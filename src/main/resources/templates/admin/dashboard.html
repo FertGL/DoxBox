@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель администратора</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffcccc 0%, #ffffff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, #ffbbbb 0%, #ff9999 100%);
+            padding: 40px;
+            text-align: center;
+            color: white;
+        }
+
+        .dashboard-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+
+        .dashboard-content {
+            padding: 40px;
+        }
+
+        .search-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .search-form {
+            display: flex;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .form-group {
+            flex: 1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ff9999;
+            box-shadow: 0 0 0 3px rgba(255, 153, 153, 0.1);
+        }
+
+        .search-btn {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #ff9999 0%, #ff6666 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 102, 0.4);
+        }
+
+        .controls-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .sort-controls, .pagination-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sort-btn, .page-btn {
+            padding: 8px 16px;
+            border: 2px solid #ff9999;
+            background: white;
+            color: #ff9999;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sort-btn:hover, .page-btn:hover {
+            background: #ff9999;
+            color: white;
+        }
+
+        .sort-btn.active {
+            background: #ff9999;
+            color: white;
+        }
+
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .user-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .user-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff9999;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9999 0%, #ff6666 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .user-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #363636;
+            margin: 0;
+        }
+
+        .user-info {
+            margin-top: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #4a5568;
+        }
+
+        .info-value {
+            color: #ff9999;
+            font-weight: 500;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .page-info {
+            text-align: center;
+            color: #4a5568;
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+            color: #f56969;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            opacity: 1;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            left: 23px;
+        }
+
+        .logout-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0.7;
+            color: #f56969;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            opacity: 1;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            right: 23px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-content {
+                padding: 20px;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .users-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .back-btn, .logout-btn {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                margin: 10px;
+                display: inline-block;
+            }
+        }
+    </style>
+</head>
+<body>
+<a th:href="@{/profile}" class="back-btn">← Назад к профилю</a>
+
+<form th:action="@{/logout}" method="post" style="display: inline;">
+    <button type="submit" class="logout-btn">Выйти</button>
+</form>
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1 class="dashboard-title">Поиск по номеру паспорта</h1>
+    </div>
+
+    <div class="dashboard-content">
+        <!-- Поиск -->
+        <div class="search-section">
+            <form th:action="@{/admin/dashboard}" method="get" class="search-form">
+                <div class="form-group">
+                    <label class="form-label">Поиск по номеру паспорта</label>
+                    <input type="text"
+                           name="search"
+                           th:value="${search}"
+                           placeholder="Введите номер паспорта..."
+                           class="form-input"
+                           pattern="[0-9]*"
+                           maxlength="10">
+                </div>
+                <button type="submit" class="search-btn">Найти</button>
+            </form>
+        </div>
+
+        <!-- Элементы управления -->
+        <div class="controls-section">
+            <div class="sort-controls">
+                <span>Сортировка:</span>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=${size}, sortBy='firstname', sortDir='asc')}"
+                   class="sort-btn"
+                   th:classappend="${sortBy == 'firstname' and sortDir == 'asc'} ? 'active' : ''">
+                    Имя ↑
+                </a>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=${size}, sortBy='firstname', sortDir='desc')}"
+                   class="sort-btn"
+                   th:classappend="${sortBy == 'firstname' and sortDir == 'desc'} ? 'active' : ''">
+                    Имя ↓
+                </a>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=${size}, sortBy='passport', sortDir='asc')}"
+                   class="sort-btn"
+                   th:classappend="${sortBy == 'passport' and sortDir == 'asc'} ? 'active' : ''">
+                    Паспорт ↑
+                </a>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=${size}, sortBy='passport', sortDir='desc')}"
+                   class="sort-btn"
+                   th:classappend="${sortBy == 'passport' and sortDir == 'desc'} ? 'active' : ''">
+                    Паспорт ↓
+                </a>
+            </div>
+
+            <div class="pagination-controls">
+                <span>Показывать по:</span>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=10, sortBy=${sortBy}, sortDir=${sortDir})}"
+                   class="sort-btn" th:classappend="${size == 10} ? 'active' : ''">10</a>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=25, sortBy=${sortBy}, sortDir=${sortDir})}"
+                   class="sort-btn" th:classappend="${size == 25} ? 'active' : ''">25</a>
+                <a th:href="@{/admin/dashboard(search=${search}, page=0, size=50, sortBy=${sortBy}, sortDir=${sortDir})}"
+                   class="sort-btn" th:classappend="${size == 50} ? 'active' : ''">50</a>
+            </div>
+        </div>
+
+        <!-- Информация о странице -->
+        <div class="page-info">
+            Найдено пользователей: <strong th:text="${totalItems}">0</strong>
+            <span th:if="${search}"> по запросу: "<strong th:text="${search}"></strong>"</span>
+        </div>
+
+        <!-- Список пользователей -->
+        <div class="users-grid">
+            <div th:each="user : ${users}" class="user-card">
+                <div class="user-header">
+                    <div class="user-avatar" th:text="${user.firstname.substring(0, 1)}">U</div>
+                    <h3 class="user-name" th:text="${user.firstname + ' ' + user.lastname}">ФИО пользователя</h3>
+                </div>
+                <div class="user-info">
+                    <div class="info-row">
+                        <span class="info-label">Номер паспорта:</span>
+                        <span class="info-value" th:text="${user.passport}">0000000000</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">ID:</span>
+                        <span class="info-value" th:text="${user.id}">1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Пагинация -->
+        <div th:if="${totalPages > 1}" class="pagination">
+            <a th:if="${currentPage > 0}"
+               th:href="@{/admin/dashboard(search=${search}, page=${currentPage - 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
+               class="page-btn">← Назад</a>
+
+            <span th:each="page : ${#numbers.sequence(0, totalPages - 1)}">
+                    <a th:if="${page >= currentPage - 2 and page <= currentPage + 2}"
+                       th:href="@{/admin/dashboard(search=${search}, page=${page}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
+                       th:text="${page + 1}"
+                       th:class="${page == currentPage} ? 'page-btn active' : 'page-btn'">
+                    </a>
+                </span>
+
+            <a th:if="${currentPage < totalPages - 1}"
+               th:href="@{/admin/dashboard(search=${search}, page=${currentPage + 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
+               class="page-btn">Вперед →</a>
+        </div>
+
+        <div th:if="${users.isEmpty()}" class="page-info">
+            <p>Пользователи не найдены</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

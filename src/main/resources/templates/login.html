@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <style>
+        .login-container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .login-title {
+            text-align: center;
+            color: #2d3748;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .login-form {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.1);
+        }
+
+        .form-input:hover {
+            border-color: #cbd5e0;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            background: rgba(255, 137, 137, 0.93);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: rgba(255, 89, 89, 0.93);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(66, 153, 225, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .login-links {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .login-link {
+            color: #4299e1;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .login-link:hover {
+            color: #2b6cb0;
+            text-decoration: underline;
+        }
+
+        .alert-message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .alert-success {
+            background-color: #f0fff4;
+            color: #2d7d32;
+            border: 1px solid #9ae6b4;
+        }
+
+        .alert-error {
+            background-color: #fed7d7;
+            color: #c53030;
+            border: 1px solid #feb2b2;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #718096;
+            font-size: 16px;
+            padding: 4px;
+        }
+
+        .toggle-password:hover {
+            color: #4299e1;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .login-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .form-input {
+                padding: 10px 14px;
+            }
+
+            .submit-btn {
+                padding: 12px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2 class="login-title">Вход в систему</h2>
+
+
+
+    <!-- Сообщения об ошибке аутентификации -->
+    <div th:if="${param.error}" class="alert-message alert-error">
+        ❌ Неверный номер паспорта или пароль. Пожалуйста, попробуйте снова.
+    </div>
+
+    <!-- Сообщение о выходе из системы -->
+    <div th:if="${param.logout}" class="alert-message alert-success">
+        👋 Вы успешно вышли из системы.
+    </div>
+
+<!--    th:object="${userLoginDto}"-->
+    <form th:action="@{/login}"  method="post" class="login-form">
+        <div class="form-group">
+            <label for="passportNumber">Номер паспорта</label>
+            <input type="text"
+                   id="passportNumber"
+                   name="passportNumber"
+                   placeholder="Введите номер паспорта"
+                   required
+                   pattern="[0-9]{10}"
+                   title="Ровно 10 цифр"
+                   maxlength="10"
+                   class="form-input">
+        </div>
+
+        <div class="form-group password-toggle">
+            <label for="password">Пароль</label>
+            <input type="password"
+                   id="password"
+                   name="password"
+                   placeholder="Введите ваш пароль"
+                   required
+                   minlength="6"
+                   class="form-input">
+            <button type="button" class="toggle-password" onclick="togglePassword()">
+                👁️
+            </button>
+        </div>
+
+        <div class="form-submit">
+            <input type="submit" class="submit-btn" value="Войти">
+        </div>
+    </form>
+
+    <div class="login-links">
+        <a th:href="@{/hello}" class="login-link">Нет аккаунта? Зарегистрироваться</a>
+        <br>
+
+    </div>
+</div>
+
+<script>
+    // Переключение видимости пароля
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const toggleButton = document.querySelector('.toggle-password');
+
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            toggleButton.textContent = '🔒';
+        } else {
+            passwordInput.type = 'password';
+            toggleButton.textContent = '👁️';
+        }
+    }
+
+    // Валидация номера паспорта (только цифры)
+    document.getElementById('passportNumber').addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    // Автофокус на поле паспорта при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('passportNumber').focus();
+    });
+
+    // Добавляем анимацию при ошибке входа
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.location.search.includes('error=true')) {
+            const form = document.querySelector('.login-form');
+            form.style.animation = 'shake 0.5s ease-in-out';
+
+            // Создаем CSS анимацию тряски
+            const style = document.createElement('style');
+            style.textContent = `
+                    @keyframes shake {
+                        0%, 100% { transform: translateX(0); }
+                        25% { transform: translateX(-5px); }
+                        75% { transform: translateX(5px); }
+                    }
+                `;
+            document.head.appendChild(style);
+
+            setTimeout(() => {
+                form.style.animation = '';
+            }, 500);
+        }
+    });
+</script>
+</body>
+</html>
