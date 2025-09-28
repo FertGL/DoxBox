@@ -21,8 +21,13 @@ public class Users {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Document> documentList = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "user_documents",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "document_id")
+    )
+    private Set<Document> documents = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -33,19 +38,32 @@ public class Users {
     public Users() {
     }
 
-    public Users(String firstName, String lastName, String passportNumber, String password) {
-        this.firstname = firstName;
-        this.lastname = lastName;
-        this.passport = passportNumber;
+    public Users(Long id, String firstname, String lastname, String passport, String password, Set<Document> documents, Role role) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.passport = passport;
         this.password = password;
+        this.documents = documents;
+        this.role = role;
+
     }
 
-    public List<Document> getDocumentList() {
-        return documentList;
+    public Users(String firstname, String lastname, String passport, String password, Set<Document> documents, Role role) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.passport = passport;
+        this.password = password;
+        this.documents = documents;
+        this.role = role;
     }
 
-    public void setDocumentList(List<Document> employees) {
-        this.documentList = employees;
+    public Set<Document> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Set<Document> documents) {
+        this.documents = documents;
     }
 
     public Role getRole() {

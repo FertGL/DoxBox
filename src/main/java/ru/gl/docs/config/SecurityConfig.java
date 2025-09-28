@@ -58,7 +58,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return username -> {
-            Users user = userRepository.findByPassport(username);
+            Users user = userRepository.getByPassport(username);
 
 
             return org.springframework.security.core.userdetails.User.builder()

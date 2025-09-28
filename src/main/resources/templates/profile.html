@@ -10,6 +10,71 @@
             padding: 0;
             box-sizing: border-box;
         }
+
+        .document-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .google-drive-button {
+            display: inline-block;
+            background: #4285f4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .google-drive-button:hover {
+            background: #3367d6;
+            transform: translateY(-2px);
+        }
+
+        .google-drive-button.disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .test-link {
+            color: #4285f4;
+            text-decoration: none;
+            margin: 5px;
+        }
+
+        .document-item:hover {
+            border-color: #3498db;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .document-info {
+            flex-grow: 1;
+        }
+
+        .document-name {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .document-date {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+
+
         .admin-btn {
             position: fixed;
             top: 25px;
@@ -128,23 +193,6 @@
             font-weight: 500;
         }
 
-        .documents-placeholder {
-            text-align: center;
-            padding: 60px 20px;
-            color: #a0aec0;
-        }
-
-        .placeholder-icon {
-            font-size: 48px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .placeholder-text {
-            font-size: 18px;
-            font-style: italic;
-        }
-
         .logout-btn {
             position: fixed;
             top: 25px;
@@ -171,7 +219,15 @@
             right: 23px;
             cursor: pointer;
         }
+
         @media (max-width: 768px) {
+
+            .document-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+
             .logout-btn {
                 top: 20px;
                 right: 20px;
@@ -245,18 +301,47 @@
                 </div>
             </div>
         </div>
-
-
         <div class="documents-card">
             <h2 class="card-title">Доступные документы</h2>
+            <div th:each="document : ${user.documents}" class="document-item">
+                <div class="document-info">
+                    <div class="document-name" th:text="${document.documentName}"></div>
+                    <div class="document-date" th:text="${#temporals.format(document.date, 'dd.MM.yyyy')}"></div>
+                </div>
 
-            <div class="documents-placeholder">
+                <button class="google-drive-button"
+                        th:attr="data-drive-link=${document.directDownloadLink},
+                     data-document-name=${document.documentName}"
+                        onclick="openDriveLink(this)">
+                    📥 Скачать
+                </button>
+            </div>
+
+            <div th:if="${user.documents == null or user.documents.isEmpty()}" class="documents-placeholder">
                 <div class="placeholder-icon">📃</div>
-                <p class="placeholder-text">Документы появятся здесь после их добавления</p>
+                <p class="placeholder-text">Документы появятся здесь после их добавления администратором</p>
             </div>
         </div>
+
     </div>
 
 </div>
+
+<script>
+    function openDriveLink(button) {
+        const driveLink = button.getAttribute('data-drive-link');
+        const documentName = button.getAttribute('data-document-name');
+
+        console.log('Opening Google Drive link:', driveLink);
+
+        if (driveLink && driveLink.startsWith('http')) {
+            // Открываем в новом окне
+            window.open(driveLink, '_blank', 'noopener,noreferrer');
+        } else {
+            alert('Ошибка: Неверная ссылка на документ "' + documentName + '"');
+            console.error('Invalid drive link:', driveLink);
+        }
+    }
+</script>
 </body>
 </html>

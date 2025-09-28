@@ -197,10 +197,114 @@
             color: #4a5568;
         }
 
-        .info-value {
-            color: #ff9999;
-            font-weight: 500;
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
         }
+
+        /* Статистика */
+        .documents-stats {
+            background: #e3f2fd;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #1976d2;
+        }
+
+        /* Поиск */
+        .search-section {
+            margin-bottom: 15px;
+        }
+        /* Табы */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .tab-button.active {
+            color: #2196f3;
+            border-bottom-color: #2196f3;
+            background: #f8fdff;
+        }
+
+        .tab-button:hover {
+            background: #f5f5f5;
+        }
+
+        /* Список документов */
+        .documents-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            margin: 0 -10px;
+        }
+
+
+        .document-checkbox label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 0;
+            width: 100%;
+        }
+
+        .document-checkbox input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+            accent-color: #2196f3;
+        }
+
+        .doc-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+
+        .documents-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .documents-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+
+        .documents-list::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .documents-list::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+
+
 
         .pagination {
             display: flex;
@@ -241,6 +345,234 @@
             left: 23px;
         }
 
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .modal-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .modal-body {
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+
+
+        .documents-stats {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #bdc3c7;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-button.active {
+            border-bottom-color: #3498db;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .documents-list {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ecf0f1;
+            border-radius: 4px;
+            padding: 10px;
+        }
+
+        .document-item {
+            margin: 8px 0;
+            padding: 12px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+
+        .document-item.assigned {
+            background: #d5f4e6;
+            border-left-color: #27ae60;
+        }
+
+        .document-item.available {
+            background: #fef9e7;
+            border-left-color: #f39c12;
+        }
+
+        .document-item label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .document-item input[type="checkbox"] {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        .doc-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .doc-badge {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .modal-actions {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .save-btn, .cancel-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .save-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .loading, .no-documents, .error {
+            text-align: center;
+            padding: 30px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+
+        /* Убираем ВСЕ анимации */
+        * {
+            transition: none !important;
+            animation: none !important;
+        }
+
+
+        .loading, .no-documents, .error {
+            text-align: center;
+            padding: 30px;
+            font-size: 16px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            color: #e74c3c;
+        }
+
+
+
+        .manage-docs-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .manage-docs-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+
+
         .logout-btn {
             position: fixed;
             top: 25px;
@@ -267,7 +599,35 @@
             right: 23px;
         }
 
+        .manage-docs-btn {
+            background: #2196f3;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .manage-docs-btn:hover {
+            background: #1976d2;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+
         @media (max-width: 768px) {
+
+
+
+            .document-checkbox label {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
             .dashboard-content {
                 padding: 20px;
             }
@@ -386,6 +746,48 @@
                         <span class="info-value" th:text="${user.id}">1</span>
                     </div>
                 </div>
+
+                <button type="button"
+                        class="manage-docs-btn"
+                        th:data-user-id="${user.id}"
+                        th:data-user-name="${user.firstname + ' ' + user.lastname}"
+                        onclick="openDocumentModal(this)">
+                    📁 Управление документами
+                </button>
+
+                <div id="documentModal" class="modal" style="display: none;">
+                    <div class="modal-backdrop"></div>
+                    <div class="modal-container">
+                        <div class="modal-header">
+                            <h3 id="modalTitle">Управление документами пользователя</h3>
+                            <button type="button" class="close-btn" onclick="closeDocumentModal()">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="documentForm" method="post">
+                                <input type="hidden" id="userId" name="userId">
+
+                                <div class="documents-stats">
+                                    <span id="selectedCount">0</span> документов выбрано
+                                </div>
+
+                                <div class="tabs">
+                                    <button type="button" class="tab-button active" data-tab="all">Все документы</button>
+                                    <button type="button" class="tab-button" data-tab="assigned">Добавленные</button>
+                                    <button type="button" class="tab-button" data-tab="available">Доступные</button>
+                                </div>
+
+                                <div id="documentsList" class="documents-list">
+                                    <div class="loading">⏳ Загрузка документов...</div>
+                                </div>
+
+                                <div class="modal-actions">
+                                    <button type="submit" class="save-btn">💾 Сохранить</button>
+                                    <button type="button" class="cancel-btn" onclick="closeDocumentModal()">❌ Отмена</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -411,7 +813,200 @@
         <div th:if="${users.isEmpty()}" class="page-info">
             <p>Пользователи не найдены</p>
         </div>
+
     </div>
 </div>
+
+<script>
+    let modalState = {
+        isOpen: false,
+        currentUser: null,
+        allDocuments: [],
+        userDocuments: [],
+        currentTab: 'all'
+    };
+
+    // Открытие модального окна - УПРОЩЕННАЯ ВЕРСИЯ
+    function openDocumentModal(button) {
+        console.log('🚀 OPEN MODAL CALLED');
+
+        // Если уже открыто - выходим
+        if (modalState.isOpen) {
+            console.log('⚠️ Modal already open');
+            return;
+        }
+
+        const userId = button.getAttribute('data-user-id');
+        const userName = button.getAttribute('data-user-name');
+
+        console.log('👤 User:', userId, userName);
+
+        // Обновляем состояние
+        modalState.isOpen = true;
+        modalState.currentUser = { id: userId, name: userName };
+
+        // ПОКАЗЫВАЕМ МОДАЛКУ СРАЗУ
+        const modal = document.getElementById('documentModal');
+        modal.style.display = 'block';
+
+        // Устанавливаем заголовок
+        document.getElementById('modalTitle').textContent = `Управление документами: ${userName}`;
+        document.getElementById('documentForm').action = `/admin/users/${userId}/documents`;
+        document.getElementById('userId').value = userId;
+
+        // Загружаем документы ЧЕРЕЗ 100ms (даем время отрендериться)
+        setTimeout(() => {
+            loadUserDocuments(userId);
+        }, 100);
+    }
+
+    // Закрытие модального окна
+    function closeDocumentModal() {
+        console.log('🔒 CLOSE MODAL CALLED');
+
+        const modal = document.getElementById('documentModal');
+        modal.style.display = 'none';
+
+        // Сбрасываем состояние
+        modalState.isOpen = false;
+        modalState.currentUser = null;
+        modalState.allDocuments = [];
+        modalState.userDocuments = [];
+        modalState.currentTab = 'all';
+    }
+
+    // Загрузка документов
+    async function loadUserDocuments(userId) {
+        console.log('📥 Loading documents for user:', userId);
+
+        try {
+            const response = await fetch(`/admin/users/${userId}/documents/data`);
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+            console.log('✅ Documents loaded:', data.allDocuments?.length || 0);
+
+            modalState.allDocuments = data.allDocuments || [];
+            modalState.userDocuments = data.userDocuments || [];
+
+            renderDocuments();
+
+        } catch (error) {
+            console.error('❌ Load error:', error);
+            document.getElementById('documentsList').innerHTML =
+                `<div class="error">Ошибка: ${error.message}</div>`;
+        }
+    }
+
+    // Рендер документов
+    function renderDocuments() {
+        const container = document.getElementById('documentsList');
+        const { allDocuments, userDocuments, currentTab } = modalState;
+
+        if (!allDocuments.length) {
+            container.innerHTML = '<div class="no-documents">📭 Нет документов</div>';
+            return;
+        }
+
+        // Фильтрация
+        const filtered = allDocuments.filter(doc => {
+            const isAssigned = userDocuments.includes(doc.id);
+            if (currentTab === 'assigned') return isAssigned;
+            if (currentTab === 'available') return !isAssigned;
+            return true;
+        });
+
+        if (!filtered.length) {
+            container.innerHTML = `<div class="no-documents">📭 Нет документов для "${currentTab}"</div>`;
+            return;
+        }
+
+        // Рендер
+        container.innerHTML = filtered.map(doc => {
+            const isAssigned = userDocuments.includes(doc.id);
+            return `
+            <div class="document-item ${isAssigned ? 'assigned' : 'available'}">
+                <label>
+                    <input type="checkbox" name="documentIds" value="${doc.id}"
+                           ${isAssigned ? 'checked' : ''} onchange="updateCounter()">
+                    <span class="doc-name">${escapeHtml(doc.documentName)}</span>
+                    <span class="doc-badge">${isAssigned ? '✅' : '➕'}</span>
+                    <small>(${formatDate(doc.date)})</small>
+                </label>
+            </div>
+        `;
+        }).join('');
+
+        updateCounter();
+    }
+
+    // Обновление счетчика
+    function updateCounter() {
+        const count = document.querySelectorAll('input[name="documentIds"]:checked').length;
+        document.getElementById('selectedCount').textContent = count;
+    }
+
+    // Переключение табов
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('tab-button')) {
+            const tab = e.target.getAttribute('data-tab');
+            modalState.currentTab = tab;
+
+            // Обновляем активную кнопку
+            document.querySelectorAll('.tab-button').forEach(btn =>
+                btn.classList.remove('active')
+            );
+            e.target.classList.add('active');
+
+            renderDocuments();
+        }
+    });
+
+    // Обработка формы
+    document.getElementById('documentForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const btn = this.querySelector('.save-btn');
+        btn.disabled = true;
+        btn.textContent = '⏳ Сохранение...';
+
+        try {
+            const formData = new FormData(this);
+            const response = await fetch(this.action, { method: 'POST', body: formData });
+
+            if (response.ok) {
+                btn.textContent = '✅ Успешно!';
+                setTimeout(closeDocumentModal, 1000);
+            } else {
+                throw new Error('Server error');
+            }
+        } catch (error) {
+            btn.textContent = '❌ Ошибка';
+            btn.disabled = false;
+        }
+    });
+
+    // Вспомогательные функции
+    function escapeHtml(text) {
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function formatDate(dateStr) {
+        return dateStr ? new Date(dateStr).toLocaleDateString('ru-RU') : '';
+    }
+
+    // Закрытие по клику на бэкдроп
+    document.querySelector('.modal-backdrop').addEventListener('click', closeDocumentModal);
+
+    // ESC для закрытия
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalState.isOpen) {
+            closeDocumentModal();
+        }
+    });
+
+    console.log('🔧 Modal script loaded');
+</script>
 </body>
 </html>

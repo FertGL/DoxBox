@@ -9,10 +9,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.gl.docs.entity.Users;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<Users, Long> {
     @Query(value = "SELECT * FROM Users u WHERE u.passport_number = :passportNumber", nativeQuery = true)
-    Users findByPassport(@Param("passportNumber") String passportNumber);
+    Optional<Users> findByPassport(@Param("passportNumber") String passportNumber);
+    Users getByPassport(@Param("passportNumber") String passportNumber);
     Page<Users> findByPassportContaining(String passportNumber, Pageable pageable);
     boolean existsByPassport(String passportNumber);
 }

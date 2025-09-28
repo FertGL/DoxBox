@@ -45,7 +45,7 @@ public class AuthController {
         }
 
         String passportNumber = authentication.getName();
-        Users user = userService.findUserByPassport(passportNumber);
+        Users user = userService.getByPassport(passportNumber);
 
         if (user == null) {
             return "redirect:/login";
