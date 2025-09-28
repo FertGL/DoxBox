@@ -4,7 +4,7 @@ FROM openjdk:17-jdk-slim
 # Копируем JAR файл в контейнер
 COPY target/DoxBox-0.0.1-SNAPSHOT.jar /app/myapp.jar
 
-# Открываем порт для приложения (например, 8080)
+
 EXPOSE 8080
 
 # Запускаем приложение

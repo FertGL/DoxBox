@@ -801,7 +801,6 @@
                     <div class="current-documents-title">Текущие документы:</div>
                     <div th:each="doc : ${user.documents}" class="current-doc-item">
                         <span class="current-doc-name" th:text="${doc.documentName}">Название документа</span>
-                        <a th:href="${doc.googleDriveLink}" target="_blank" class="document-link">Просмотреть</a>
                     </div>
                 </div>
                 <div class="current-documents" th:unless="${user.documents} and ${user.documents.size()} > 0">
