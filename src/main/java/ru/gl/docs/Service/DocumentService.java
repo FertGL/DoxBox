@@ -33,10 +33,6 @@ public class DocumentService {
         }
     }
 
-
-
-
-
     public Optional<Document> getDocumentById(Long id) {
         return documentRepository.findById(id);
     }

@@ -105,32 +105,6 @@
             border-radius: 10px;
         }
 
-        .sort-controls, .pagination-controls {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .sort-btn, .page-btn {
-            padding: 8px 16px;
-            border: 2px solid #ff9999;
-            background: white;
-            color: #ff9999;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .sort-btn:hover, .page-btn:hover {
-            background: #ff9999;
-            color: white;
-        }
-
-        .sort-btn.active {
-            background: #ff9999;
-            color: white;
-        }
 
         .users-grid {
             display: grid;
@@ -206,63 +180,16 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(5px);
             animation: fadeIn 0.3s ease-out;
         }
 
-        /* Статистика */
-        .documents-stats {
-            background: #e3f2fd;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: #1976d2;
-        }
 
         /* Поиск */
         .search-section {
             margin-bottom: 15px;
         }
-        /* Табы */
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-
-        .tab-button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            color: #666;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s;
-        }
-
-        .tab-button.active {
-            color: #2196f3;
-            border-bottom-color: #2196f3;
-            background: #f8fdff;
-        }
-
-        .tab-button:hover {
-            background: #f5f5f5;
-        }
-
-        /* Список документов */
-        .documents-list {
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 10px;
-            margin: 0 -10px;
-        }
-
 
         .document-checkbox label {
             display: flex;
@@ -277,33 +204,6 @@
             transform: scale(1.2);
             accent-color: #2196f3;
         }
-
-        .doc-name {
-            font-weight: 600;
-            color: #333;
-            flex: 1;
-        }
-
-
-        .documents-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .documents-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 3px;
-        }
-
-        .documents-list::-webkit-scrollbar-thumb {
-            background: #c1c1c1;
-            border-radius: 3px;
-        }
-
-        .documents-list::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8;
-        }
-
-
 
 
         .pagination {
@@ -354,122 +254,9 @@
             z-index: 10000;
         }
 
-        .modal-backdrop {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-        }
-
-        .modal-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            width: 90%;
-            max-width: 700px;
-            max-height: 80vh;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .modal-header h3 {
             margin: 0;
             font-size: 1.3em;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 0;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close-btn:hover {
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .modal-body {
-            padding: 20px;
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-
-
-        .documents-stats {
-            background: #ecf0f1;
-            padding: 10px;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            text-align: center;
-            font-weight: bold;
-        }
-
-        .tabs {
-            display: flex;
-            margin-bottom: 15px;
-            border-bottom: 2px solid #bdc3c7;
-        }
-
-        .tab-button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background: none;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-        }
-
-        .tab-button.active {
-            border-bottom-color: #3498db;
-            color: #3498db;
-            font-weight: bold;
-        }
-
-        .documents-list {
-            max-height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ecf0f1;
-            border-radius: 4px;
-            padding: 10px;
-        }
-
-        .document-item {
-            margin: 8px 0;
-            padding: 12px;
-            border-radius: 4px;
-            border-left: 4px solid #3498db;
-        }
-
-        .document-item.assigned {
-            background: #d5f4e6;
-            border-left-color: #27ae60;
-        }
-
-        .document-item.available {
-            background: #fef9e7;
-            border-left-color: #f39c12;
         }
 
         .document-item label {
@@ -483,21 +270,251 @@
             margin-right: 12px;
             transform: scale(1.2);
         }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .users-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .user-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .user-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
 
-        .doc-name {
-            flex: 1;
+        /* Стили для пагинации */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .page-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 40px;
+            height: 40px;
+            padding: 8px 12px;
+            background: white;
+            border: 2px solid #ff9999;
+            color: #ff9999;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .page-btn:hover {
+            background: #ff9999;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 153, 153, 0.3);
+        }
+
+        .page-btn.active {
+            background: #ff9999;
+            color: white;
+            border-color: #ff9999;
+        }
+
+        .page-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f8f9fa;
+            border-color: #dee2e6;
+            color: #6c757d;
+        }
+
+        .page-btn:hover {
+            transform: none;
+            box-shadow: none;
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 40px;
+            padding: 30px 0;
+        }
+
+        .page-btn {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff9999 0%, #ff6666 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .page-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 102, 102, 0.4);
+        }
+
+        .page-btn.disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .page-info {
+            color: #4a5568;
             font-weight: 500;
         }
 
-        .doc-badge {
-            margin: 0 10px;
-            font-size: 14px;
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #4a6ee0;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .manage-docs-btn {
+            background: #4a6ee0;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .manage-docs-btn:hover {
+            background: #3a5ec0;
         }
 
-        .modal-actions {
-            margin-top: 20px;
-            text-align: right;
+        /* Модальное окно */
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
+
+        .document-checkbox {
+            margin-right: 10px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .cancel-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .manage-docs-btn {
+            background: #4a6ee0;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .manage-docs-btn:hover {
+            background: #3a5ec0;
+        }
+
+        /* Модальное окно */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .document-checkbox {
+            margin-right: 10px;
+        }
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .save-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .cancel-btn {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /*   ТУТ*/
 
         .save-btn, .cancel-btn {
             padding: 12px 24px;
@@ -523,15 +540,7 @@
             cursor: not-allowed;
         }
 
-        .loading, .no-documents, .error {
-            text-align: center;
-            padding: 30px;
-            color: #7f8c8d;
-        }
 
-        .error {
-            color: #e74c3c;
-        }
 
         /* Убираем ВСЕ анимации */
         * {
@@ -540,16 +549,13 @@
         }
 
 
-        .loading, .no-documents, .error {
+        .no-documents{
             text-align: center;
             padding: 30px;
             font-size: 16px;
             color: #7f8c8d;
         }
 
-        .error {
-            color: #e74c3c;
-        }
 
 
 
@@ -619,9 +625,53 @@
             box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
         }
 
+
+        .sort-controls, .pagination-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sort-btn, .page-btn {
+            padding: 8px 16px;
+            border: 2px solid #ff9999;
+            background: white;
+            color: #ff9999;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .sort-btn:hover, .page-btn:hover {
+            background: #ff9999;
+            color: white;
+        }
+
+        .sort-btn.active {
+            background: #ff9999;
+            color: white;
+        }
+
         @media (max-width: 768px) {
 
+            .pagination {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
 
+            .page-btn {
+                min-width: 35px;
+                height: 35px;
+                font-size: 12px;
+                padding: 6px 8px;
+            }
+
+            .page-info-pagination {
+                order: -1;
+                width: 100%;
+                margin-bottom: 10px;
+            }
 
             .document-checkbox label {
                 flex-direction: column;
@@ -746,58 +796,59 @@
                         <span class="info-value" th:text="${user.id}">1</span>
                     </div>
                 </div>
+                <!-- Блок с текущими документами пользователя -->
+                <div class="current-documents" th:if="${user.documents} and ${user.documents.size()} > 0">
+                    <div class="current-documents-title">Текущие документы:</div>
+                    <div th:each="doc : ${user.documents}" class="current-doc-item">
+                        <span class="current-doc-name" th:text="${doc.documentName}">Название документа</span>
+                        <a th:href="${doc.googleDriveLink}" target="_blank" class="document-link">Просмотреть</a>
+                    </div>
+                </div>
+                <div class="current-documents" th:unless="${user.documents} and ${user.documents.size()} > 0">
+                    <div class="current-documents-title">Текущие документы:</div>
+                    <div class="no-documents">Нет назначенных документов</div>
+                </div>
 
-                <button type="button"
-                        class="manage-docs-btn"
-                        th:data-user-id="${user.id}"
-                        th:data-user-name="${user.firstname + ' ' + user.lastname}"
-                        onclick="openDocumentModal(this)">
-                    📁 Управление документами
-                </button>
+                    <button class="manage-docs-btn"
+                            th:data-user-id="${user.id}"
+                            th:onclick="'showDocumentModal(' + ${user.id} + ')'">
+                        📁 Управление документами
+                    </button>
+                </div>
 
-                <div id="documentModal" class="modal" style="display: none;">
-                    <div class="modal-backdrop"></div>
-                    <div class="modal-container">
-                        <div class="modal-header">
-                            <h3 id="modalTitle">Управление документами пользователя</h3>
-                            <button type="button" class="close-btn" onclick="closeDocumentModal()">&times;</button>
+                <!-- Модальное окно -->
+                <div id="documentModal" class="modal">
+                    <div class="modal-content">
+                        <h3>Управление документами</h3>
+                        <div id="documentsList">
+                            <!-- Документы будут здесь -->
                         </div>
-                        <div class="modal-body">
-                            <form id="documentForm" method="post">
-                                <input type="hidden" id="userId" name="userId">
-
-                                <div class="documents-stats">
-                                    <span id="selectedCount">0</span> документов выбрано
-                                </div>
-
-                                <div class="tabs">
-                                    <button type="button" class="tab-button active" data-tab="all">Все документы</button>
-                                    <button type="button" class="tab-button" data-tab="assigned">Добавленные</button>
-                                    <button type="button" class="tab-button" data-tab="available">Доступные</button>
-                                </div>
-
-                                <div id="documentsList" class="documents-list">
-                                    <div class="loading">⏳ Загрузка документов...</div>
-                                </div>
-
-                                <div class="modal-actions">
-                                    <button type="submit" class="save-btn">💾 Сохранить</button>
-                                    <button type="button" class="cancel-btn" onclick="closeDocumentModal()">❌ Отмена</button>
-                                </div>
-                            </form>
+                        <div class="modal-buttons">
+                            <button class="cancel-btn" onclick="closeModal()">Отмена</button>
+                            <button class="save-btn" onclick="saveDocuments()">Сохранить</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Пагинация -->
-        <div th:if="${totalPages > 1}" class="pagination">
-            <a th:if="${currentPage > 0}"
-               th:href="@{/admin/dashboard(search=${search}, page=${currentPage - 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
-               class="page-btn">← Назад</a>
 
-            <span th:each="page : ${#numbers.sequence(0, totalPages - 1)}">
+                <!-- Формы для каждого пользователя -->
+                <div th:each="user : ${users}" style="display: none;">
+                    <form th:id="'docForm-' + ${user.id}"
+                          th:action="@{/admin/users/documents/update}"
+                          method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input type="hidden" name="userId" th:value="${user.id}"/>
+                        <input type="hidden" th:id="'documentIds-' + ${user.id}" name="documentIds"/>
+                    </form>
+                </div>
+
+                <!-- Пагинация -->
+                <div th:if="${totalPages > 1}" class="pagination">
+                    <a th:if="${currentPage > 0}"
+                       th:href="@{/admin/dashboard(search=${search}, page=${currentPage - 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
+                       class="page-btn">← Назад</a>
+
+                    <span th:each="page : ${#numbers.sequence(0, totalPages - 1)}">
                     <a th:if="${page >= currentPage - 2 and page <= currentPage + 2}"
                        th:href="@{/admin/dashboard(search=${search}, page=${page}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
                        th:text="${page + 1}"
@@ -805,208 +856,111 @@
                     </a>
                 </span>
 
-            <a th:if="${currentPage < totalPages - 1}"
-               th:href="@{/admin/dashboard(search=${search}, page=${currentPage + 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
-               class="page-btn">Вперед →</a>
-        </div>
+                    <a th:if="${currentPage < totalPages - 1}"
+                       th:href="@{/admin/dashboard(search=${search}, page=${currentPage + 1}, size=${size}, sortBy=${sortBy}, sortDir=${sortDir})}"
+                       class="page-btn">Вперед →</a>
+                </div>
 
-        <div th:if="${users.isEmpty()}" class="page-info">
-            <p>Пользователи не найдены</p>
-        </div>
+                <div th:if="${users.isEmpty()}" class="page-info">
+                    <p>Пользователи не найдены</p>
+                </div>
 
-    </div>
-</div>
-
-<script>
-    let modalState = {
-        isOpen: false,
-        currentUser: null,
-        allDocuments: [],
-        userDocuments: [],
-        currentTab: 'all'
-    };
-
-    // Открытие модального окна - УПРОЩЕННАЯ ВЕРСИЯ
-    function openDocumentModal(button) {
-        console.log('🚀 OPEN MODAL CALLED');
-
-        // Если уже открыто - выходим
-        if (modalState.isOpen) {
-            console.log('⚠️ Modal already open');
-            return;
-        }
-
-        const userId = button.getAttribute('data-user-id');
-        const userName = button.getAttribute('data-user-name');
-
-        console.log('👤 User:', userId, userName);
-
-        // Обновляем состояние
-        modalState.isOpen = true;
-        modalState.currentUser = { id: userId, name: userName };
-
-        // ПОКАЗЫВАЕМ МОДАЛКУ СРАЗУ
-        const modal = document.getElementById('documentModal');
-        modal.style.display = 'block';
-
-        // Устанавливаем заголовок
-        document.getElementById('modalTitle').textContent = `Управление документами: ${userName}`;
-        document.getElementById('documentForm').action = `/admin/users/${userId}/documents`;
-        document.getElementById('userId').value = userId;
-
-        // Загружаем документы ЧЕРЕЗ 100ms (даем время отрендериться)
-        setTimeout(() => {
-            loadUserDocuments(userId);
-        }, 100);
-    }
-
-    // Закрытие модального окна
-    function closeDocumentModal() {
-        console.log('🔒 CLOSE MODAL CALLED');
-
-        const modal = document.getElementById('documentModal');
-        modal.style.display = 'none';
-
-        // Сбрасываем состояние
-        modalState.isOpen = false;
-        modalState.currentUser = null;
-        modalState.allDocuments = [];
-        modalState.userDocuments = [];
-        modalState.currentTab = 'all';
-    }
-
-    // Загрузка документов
-    async function loadUserDocuments(userId) {
-        console.log('📥 Loading documents for user:', userId);
-
-        try {
-            const response = await fetch(`/admin/users/${userId}/documents/data`);
-
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-            const data = await response.json();
-            console.log('✅ Documents loaded:', data.allDocuments?.length || 0);
-
-            modalState.allDocuments = data.allDocuments || [];
-            modalState.userDocuments = data.userDocuments || [];
-
-            renderDocuments();
-
-        } catch (error) {
-            console.error('❌ Load error:', error);
-            document.getElementById('documentsList').innerHTML =
-                `<div class="error">Ошибка: ${error.message}</div>`;
-        }
-    }
-
-    // Рендер документов
-    function renderDocuments() {
-        const container = document.getElementById('documentsList');
-        const { allDocuments, userDocuments, currentTab } = modalState;
-
-        if (!allDocuments.length) {
-            container.innerHTML = '<div class="no-documents">📭 Нет документов</div>';
-            return;
-        }
-
-        // Фильтрация
-        const filtered = allDocuments.filter(doc => {
-            const isAssigned = userDocuments.includes(doc.id);
-            if (currentTab === 'assigned') return isAssigned;
-            if (currentTab === 'available') return !isAssigned;
-            return true;
-        });
-
-        if (!filtered.length) {
-            container.innerHTML = `<div class="no-documents">📭 Нет документов для "${currentTab}"</div>`;
-            return;
-        }
-
-        // Рендер
-        container.innerHTML = filtered.map(doc => {
-            const isAssigned = userDocuments.includes(doc.id);
-            return `
-            <div class="document-item ${isAssigned ? 'assigned' : 'available'}">
-                <label>
-                    <input type="checkbox" name="documentIds" value="${doc.id}"
-                           ${isAssigned ? 'checked' : ''} onchange="updateCounter()">
-                    <span class="doc-name">${escapeHtml(doc.documentName)}</span>
-                    <span class="doc-badge">${isAssigned ? '✅' : '➕'}</span>
-                    <small>(${formatDate(doc.date)})</small>
-                </label>
             </div>
-        `;
-        }).join('');
 
-        updateCounter();
-    }
+        </div>
+        <script th:inline="javascript">
+            // Передаем данные документов из Thymeleaf в JavaScript
+            const allDocuments = /*[[${allDocuments}]]*/ [];
+            let currentUserId = null;
 
-    // Обновление счетчика
-    function updateCounter() {
-        const count = document.querySelectorAll('input[name="documentIds"]:checked').length;
-        document.getElementById('selectedCount').textContent = count;
-    }
+            // Функция показа модального окна
+            function showDocumentModal(userId) {
+                currentUserId = userId;
+                console.log('Opening modal for user:', userId);
 
-    // Переключение табов
-    document.addEventListener('click', function(e) {
-        if (e.target.classList.contains('tab-button')) {
-            const tab = e.target.getAttribute('data-tab');
-            modalState.currentTab = tab;
+                // Получаем текущие документы пользователя из данных на странице
+                const userDocuments = getUserDocuments(userId);
+                console.log('User current documents:', userDocuments);
 
-            // Обновляем активную кнопку
-            document.querySelectorAll('.tab-button').forEach(btn =>
-                btn.classList.remove('active')
-            );
-            e.target.classList.add('active');
+                // Заполняем модальное окно
+                const documentsList = document.getElementById('documentsList');
+                documentsList.innerHTML = '';
 
-            renderDocuments();
-        }
-    });
+                if (allDocuments.length === 0) {
+                    documentsList.innerHTML = '<p>Нет доступных документов</p>';
+                } else {
+                    allDocuments.forEach(doc => {
+                        const isChecked = userDocuments.includes(doc.id);
+                        const docElement = document.createElement('div');
+                        docElement.className = 'document-item';
+                        docElement.innerHTML = `
+                    <input type="checkbox" class="document-checkbox"
+                           value="${doc.id}" ${isChecked ? 'checked' : ''}>
+                    <span style="flex-grow: 1;">${doc.documentName}</span>
+                    <a href="${doc.googleDriveLink}" target="_blank" style="margin-left: 10px;">Просмотреть</a>
+                `;
+                        documentsList.appendChild(docElement);
+                    });
+                }
 
-    // Обработка формы
-    document.getElementById('documentForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-
-        const btn = this.querySelector('.save-btn');
-        btn.disabled = true;
-        btn.textContent = '⏳ Сохранение...';
-
-        try {
-            const formData = new FormData(this);
-            const response = await fetch(this.action, { method: 'POST', body: formData });
-
-            if (response.ok) {
-                btn.textContent = '✅ Успешно!';
-                setTimeout(closeDocumentModal, 1000);
-            } else {
-                throw new Error('Server error');
+                // Показываем модальное окно
+                document.getElementById('documentModal').style.display = 'flex';
             }
-        } catch (error) {
-            btn.textContent = '❌ Ошибка';
-            btn.disabled = false;
-        }
-    });
 
-    // Вспомогательные функции
-    function escapeHtml(text) {
-        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    }
+            // Функция получения документов пользователя из данных на странице
+            function getUserDocuments(userId) {
+                const userDocuments = [];
+                // Ищем пользователя по ID и получаем его документы
+                const userCards = document.querySelectorAll('.user-card');
+                userCards.forEach(card => {
+                    const cardUserId = card.querySelector('.manage-docs-btn').onclick.toString().match(/showDocumentModal\((\d+)\)/)[1];
+                    if (cardUserId == userId) {
+                        const docElements = card.querySelectorAll('.current-doc-item');
+                        docElements.forEach(docElement => {
+                            const docName = docElement.querySelector('.current-doc-name').textContent;
+                            // Находим ID документа по имени
+                            const doc = allDocuments.find(d => d.documentName === docName.trim());
+                            if (doc) {
+                                userDocuments.push(doc.id);
+                            }
+                        });
+                    }
+                });
+                return userDocuments;
+            }
 
-    function formatDate(dateStr) {
-        return dateStr ? new Date(dateStr).toLocaleDateString('ru-RU') : '';
-    }
+            // Закрытие модального окна
+            function closeModal() {
+                document.getElementById('documentModal').style.display = 'none';
+                currentUserId = null;
+            }
 
-    // Закрытие по клику на бэкдроп
-    document.querySelector('.modal-backdrop').addEventListener('click', closeDocumentModal);
+            // Сохранение документов
+            function saveDocuments() {
+                if (!currentUserId) return;
 
-    // ESC для закрытия
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && modalState.isOpen) {
-            closeDocumentModal();
-        }
-    });
+                const checkboxes = document.querySelectorAll('.document-checkbox:checked');
+                const selectedIds = Array.from(checkboxes).map(cb => cb.value);
 
-    console.log('🔧 Modal script loaded');
-</script>
+                console.log('Saving documents for user:', currentUserId);
+                console.log('Selected document IDs:', selectedIds);
+
+                // Находим форму для этого пользователя
+                const form = document.getElementById('docForm-' + currentUserId);
+                if (form) {
+                    form.querySelector('input[name="documentIds"]').value = selectedIds.join(',');
+                    form.submit();
+                }
+            }
+
+            // Закрытие по клику вне окна
+            window.addEventListener('click', function (event) {
+                const modal = document.getElementById('documentModal');
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        </script>
+</div>
 </body>
 </html>

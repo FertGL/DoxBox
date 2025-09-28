@@ -9,16 +9,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.gl.docs.Service.DocumentService;
 import ru.gl.docs.Service.UserService;
 import ru.gl.docs.dto.DocumentDto;
 import ru.gl.docs.entity.Document;
 import ru.gl.docs.entity.Users;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 //
 //@Controller
 //@RequestMapping("/admin")
@@ -79,8 +78,10 @@ public class AdminController {
             Model model) {
 
         Page<Users> userPage = userService.searchUsers(search, page, size, sortBy, sortDir);
+        List<DocumentDto> allDocuments = documentService.getAllDocuments();
 
         model.addAttribute("users", userPage.getContent());
+        model.addAttribute("allDocuments", allDocuments); // Добавляем все документы
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", userPage.getTotalPages());
         model.addAttribute("totalItems", userPage.getTotalElements());
@@ -89,12 +90,12 @@ public class AdminController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("search", search);
 
-        // Добавляем пустые списки для модального окна (чтобы не было ошибок Thymeleaf)
-        model.addAttribute("allDocuments", Collections.emptyList());
-        model.addAttribute("userDocuments", Collections.emptyList());
+//    model.addAttribute("allDocuments", Collections.emptyList());
+//        model.addAttribute("userDocuments", Collections.emptyList());
 
         return "admin/dashboard";
     }
+
 
     @GetMapping("/users/{userId}/documents")
     @ResponseBody
@@ -162,5 +163,29 @@ public class AdminController {
         return response;
     }
 
+
+    @PostMapping("/users/documents/update")
+    public String updateUserDocuments(
+            @RequestParam Long userId,
+            @RequestParam(required = false) String documentIds,
+            RedirectAttributes redirectAttributes) {
+
+        try {
+            List<Long> documentIdList = new ArrayList<>();
+            if (documentIds != null && !documentIds.trim().isEmpty()) {
+                documentIdList = Arrays.stream(documentIds.split(","))
+                        .map(Long::parseLong)
+                        .collect(Collectors.toList());
+            }
+
+            documentService.updateUserDocuments(userId, documentIdList);
+            redirectAttributes.addFlashAttribute("success", "Документы успешно обновлены!");
+
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Ошибка при обновлении документов: " + e.getMessage());
+        }
+
+        return "redirect:/admin/dashboard";
+    }
 
 }
