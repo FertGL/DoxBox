@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserProfileDto {
     private Users user;
-    private List<Document> documents = new ArrayList<>(); // Инициализация по умолчанию
+    private List<Document> documents = new ArrayList<>();
 
     public UserProfileDto() {
         this.documents = new ArrayList<>();

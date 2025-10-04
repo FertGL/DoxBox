@@ -9,7 +9,7 @@ public class DocumentDto {
     private String description;
     private LocalDate date;
 
-    // Конструкторы
+
     public DocumentDto() {}
 
     public DocumentDto(Long id, String documentName, String googleDriveLink, LocalDate date) {
@@ -19,7 +19,7 @@ public class DocumentDto {
         this.date = date;
     }
 
-    // Геттеры и сеттеры
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

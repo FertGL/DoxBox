@@ -43,7 +43,6 @@ public class UserService {
                 return new UserProfileDto(user, documents);
             }
         } catch (Exception e) {
-            // Логируем ошибку
             System.err.println("Error getting user profile: " + e.getMessage());
         }
 

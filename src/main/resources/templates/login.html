@@ -176,12 +176,10 @@
 
 
 
-    <!-- Сообщения об ошибке аутентификации -->
     <div th:if="${param.error}" class="alert-message alert-error">
         ❌ Неверный номер паспорта или пароль. Пожалуйста, попробуйте снова.
     </div>
 
-    <!-- Сообщение о выходе из системы -->
     <div th:if="${param.logout}" class="alert-message alert-success">
         👋 Вы успешно вышли из системы.
     </div>
@@ -228,7 +226,7 @@
 </div>
 
 <script>
-    // Переключение видимости пароля
+
     function togglePassword() {
         const passwordInput = document.getElementById('password');
         const toggleButton = document.querySelector('.toggle-password');
@@ -242,17 +240,17 @@
         }
     }
 
-    // Валидация номера паспорта (только цифры)
+
     document.getElementById('passportNumber').addEventListener('input', function() {
         this.value = this.value.replace(/[^0-9]/g, '');
     });
 
-    // Автофокус на поле паспорта при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('passportNumber').focus();
     });
 
-    // Добавляем анимацию при ошибке входа
+
     document.addEventListener('DOMContentLoaded', function() {
         if (window.location.search.includes('error=true')) {
             const form = document.querySelector('.login-form');

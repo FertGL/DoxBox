@@ -7,7 +7,6 @@ public class UserDocumentUpdateDto {
     private Long userId;
     private List<Long> documentIds;
 
-    // Конструкторы
     public UserDocumentUpdateDto() {}
 
     public UserDocumentUpdateDto(Long userId, List<Long> documentIds) {
@@ -15,7 +14,7 @@ public class UserDocumentUpdateDto {
         this.documentIds = documentIds;
     }
 
-    // Геттеры и сеттеры
+
     public Long getUserId() { return userId; }
     public void setUserId(Long userId) { this.userId = userId; }
 
